@@ -1,0 +1,63 @@
+/* Forma: sans-serif throughout; roomier, more legible navigation. */
+.forma,.collection-site.forma-collection{--head:'Inter Tight';font-family:'Inter Tight',Arial,sans-serif;font-weight:400}
+.forma{font-size:16px;line-height:26px}
+.forma h1,.forma h2,.forma h3,.forma .shutter-label,.forma .contact-invitation .phone,.collection-site.forma-collection h1,.collection-site.forma-collection h2,.collection-site.forma-collection h3,.forma-collection .media-label h2,.forma-collection .viewer-footer h2{font-family:'Inter Tight',Arial,sans-serif;font-weight:400}
+.forma .hero h1{font-size:clamp(84px,7.4vw,124px);line-height:1.04}
+.forma .site-header nav{font-family:'Inter Tight',Arial,sans-serif;font-size:15px;line-height:22px;letter-spacing:.018em}
+.forma .page-nav{gap:24px}.forma .catalog-nav{gap:18px!important}
+.forma .site-header .menu-toggle,.forma .site-header .mobile-contact{font-family:'Inter Tight',Arial,sans-serif;font-size:13px;letter-spacing:.015em}
+.forma #mobile-menu{font-family:'Inter Tight',Arial,sans-serif;font-size:16px;line-height:24px;letter-spacing:.015em}
+.forma .version-picker{font-family:'Inter Tight',Arial,sans-serif;font-size:13px}.forma .version-picker summary{font-size:12px}.forma .version-picker nav{font-size:14px}
+.forma-collection .collection-header nav{font-family:'Inter Tight',Arial,sans-serif;font-size:15px;letter-spacing:.018em}
+.collection-site.forma-collection .collection-intro h1{font-size:clamp(52px,5vw,80px);line-height:1.08}
+/* Author content stays intact. The opening heading spans the row above both columns. */
+.forma .about{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:48px 72px}
+.forma .about-heading{grid-column:1/-1;gap:24px}
+.forma .about-heading h2{font-size:clamp(52px,5vw,78px);line-height:1.1}
+.forma .author-photo{aspect-ratio:1;object-position:center}
+.forma .biography{align-self:center;max-width:560px}
+.forma .biography h3{font-size:32px;line-height:1.2}
+/* Architecture: tactile rounded controls, with a clear primary/secondary hierarchy. */
+.architecture .action-link,.architecture-collection .gallery-contact .button{border:1px solid var(--black);background:var(--black);color:var(--white);border-radius:14px;padding:12px 20px;min-height:48px;gap:20px;box-shadow:0 3px 9px rgba(10, 10, 10, 0.10);transition:background .2s,transform .2s,box-shadow .2s;text-decoration:none}
+.architecture .action-link img{filter:brightness(0) invert(1)}
+.architecture .action-link:hover,.architecture-collection .gallery-contact .button:hover{background:var(--muted);transform:translateY(-2px);box-shadow:0 7px 16px rgba(10, 10, 10, 0.13)}
+.architecture .action-link:active{transform:translateY(0)}
+.architecture .chapter-controls,.architecture .view-controls{gap:8px}
+.architecture .chapter-controls button,.architecture .view-controls button{border:1px solid var(--line);border-radius:12px;padding:10px;font-size:11px;line-height:17px;min-height:44px;min-width:0;background:var(--white);transition:background .2s,color .2s,box-shadow .2s}
+.architecture .chapter-controls button[aria-pressed=true],.architecture .view-controls button[aria-pressed=true]{background:var(--black);color:var(--white);border-color:var(--black);box-shadow:0 3px 8px rgba(10, 10, 10, 0.10)}
+.architecture .chapter-controls button:hover,.architecture .view-controls button:hover{box-shadow:0 3px 12px rgba(10, 10, 10, 0.14)}
+.architecture #video-toggle,.architecture .menu-toggle,.architecture #motion-toggle{border:1px solid var(--line);background:var(--white);border-radius:11px;padding:8px 14px;font-family:'Inter Tight',Arial,sans-serif;font-size:12px;line-height:18px;min-height:42px}
+.architecture .version-picker{border-radius:14px;overflow:hidden}.architecture .version-picker #motion-toggle{border-radius:10px;width:calc(100% - 20px);margin:5px 10px 10px}
+.architecture .detail-image{border-radius:18px;overflow:hidden;border:1px solid var(--white)}
+.architecture .room-dot{width:42px;height:42px;background:var(--white);border:1px solid var(--line);box-shadow:0 4px 15px rgba(10, 10, 10, 0.14)}
+.architecture .room-directory a{border:1px solid var(--line);border-radius:12px;background:var(--white);padding:14px 16px;transition:background .2s,transform .2s;text-decoration:none}
+.architecture .room-directory a:hover{background:var(--white);transform:translateY(-2px)}
+.architecture #zoom-dialog,.architecture-collection #media-viewer{border-radius:20px;box-shadow:0 24px 80px rgba(10, 10, 10, 0.25)}
+.architecture #zoom-close,.architecture-collection #viewer-close{display:inline-flex;align-items:center;justify-content:center;gap:12px;flex:none;min-height:44px;padding:9px 14px;border:1px solid var(--line);background:var(--white);color:var(--black);border-radius:12px;font:400 13px/20px 'Inter Tight',Arial,sans-serif;white-space:nowrap}
+.architecture #zoom-close:hover,.architecture-collection #viewer-close:hover{background:var(--white)}
+.close-mark{display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:var(--white);font-size:19px;line-height:1}
+.architecture #zoom-original,.architecture-collection .viewer-footer button,.architecture-collection .gallery-pagination button{border:1px solid var(--line);border-radius:12px;background:var(--white);padding:10px 18px;color:var(--black);text-decoration:none}
+.architecture-collection .gallery-refine select,.architecture-collection .media-open{border-radius:12px}
+.architecture-collection .viewer-footer button:hover,.architecture-collection .gallery-pagination button:hover{background:var(--white)}
+.architecture-collection .viewer-footer button:disabled{opacity:.45;cursor:default}
+/* Real map imagery, softly tinted in CSS rather than inventing cartography. */
+.showroom-location{display:grid;grid-template-columns:.8fr 1.5fr;gap:56px;align-items:center;margin-top:64px;padding:40px 0 0}
+.location-copy{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.location-copy h3{font-family:var(--head),'Inter Tight',sans-serif;font-size:30px;line-height:1.15}
+.location-copy address{font:400 14px/24px 'Inter Tight',Arial,sans-serif;color:var(--muted);font-style:normal}
+.postal-code{font-size:12px;line-height:20px}
+.location-copy .map-route{font-family:'Inter Tight',Arial,sans-serif;font-size:13px;line-height:20px;border:1px solid var(--line);border-radius:12px;padding:11px 16px;min-height:46px;gap:20px;background:var(--white);color:var(--black);text-decoration:none}
+.location-copy .map-route:hover{background:var(--white)}
+.location-map{position:relative;min-width:0}
+.map-preview{position:relative;display:block;overflow:hidden;aspect-ratio:2/1;isolation:isolate;border-radius:18px;background:var(--white);border:1px solid var(--white);text-decoration:none!important}
+.map-tiles{position:absolute;inset:0;filter:grayscale(1) contrast(1.05) brightness(.95);opacity:1;overflow:hidden}
+.map-tile{position:absolute;max-width:none;display:block;object-fit:fill}
+.map-preview:after{content:'';position:absolute;inset:0;z-index:1;background:rgba(255, 255, 255, 0.17);pointer-events:none}
+.map-marker{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none}
+.map-pin{display:block;width:20px;height:20px;background:var(--muted);border:5px solid var(--white);border-radius:50%;box-shadow:0 0 0 9px rgba(255, 255, 255, 0.23),0 3px 15px rgba(10, 10, 10, 0.22)}
+.map-pin-label{font:500 12px/18px 'Inter Tight',Arial,sans-serif;padding:6px 12px;background:rgba(255, 255, 255, 0.87);border:1px solid var(--line);border-radius:8px;color:var(--black);box-shadow:0 3px 12px rgba(10, 10, 10, 0.09)}
+.map-attribution{margin-top:8px;font:400 10px/17px 'Inter Tight',Arial,sans-serif;color:var(--muted);text-align:right}.map-attribution a{text-decoration:underline}
+.map-unavailable:before{content:'Открыть карту и маршрут';position:absolute;left:0;right:0;bottom:18%;text-align:center;font:400 13px/20px 'Inter Tight',Arial,sans-serif;color:var(--muted)}
+.collection-site>.showroom-location{margin:0;padding:48px var(--gutter) 72px;background:var(--white)}
+@media(max-width:1100px){.forma .about{gap:40px}.showroom-location{gap:32px}.architecture .menu-toggle{padding:6px 10px}.architecture .room-directory a{padding:12px}}
+@media(max-width:760px){.forma .hero h1{font-size:67px;line-height:1.06}.forma .intro-grid h2{font-size:44px}.forma .categories h2{font-size:44px;line-height:1.1}.forma .shutter-label{font-size:18px}.forma .shutter-detail h3{font-size:25px;line-height:1.1}.forma .about{display:flex;gap:32px}.forma .about-heading h2{font-size:42px}.forma .biography h3{font-size:28px}.forma .author-photo{aspect-ratio:4/3}.forma-collection .collection-intro h1{font-size:46px}.forma-collection .collection-header nav{font-size:13px}.architecture .action-link{padding:11px 16px;gap:14px;font-size:13px}.architecture .room-directory a{padding:11px;font-size:11px}.architecture #zoom-dialog{padding:16px;border-radius:16px}.architecture .zoom-top{gap:12px}.architecture .zoom-top h3{font-size:14px}.architecture #zoom-close,.architecture-collection #viewer-close{padding:8px 10px;gap:8px;font-size:12px}.architecture-collection #media-viewer{border-radius:16px}.showroom-location{display:flex;flex-direction:column;align-items:stretch;gap:28px;margin-top:40px;padding-top:8px}.location-copy{gap:16px}.location-copy h3{font-size:26px}.location-copy address{font-size:13px;line-height:23px}.map-preview{aspect-ratio:1.35/1;border-radius:14px}.map-tiles{width:148.148%;height:100%;left:-24.074%}.collection-site>.showroom-location{padding:40px 22px 56px}.map-attribution{font-size:9px}.architecture .location-copy .map-route{padding:11px 16px}}

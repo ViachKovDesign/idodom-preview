@@ -1,0 +1,186 @@
+/* Палитра п.2 ТЗ (28.10.2026): на всём сайте только белый и чёрный, серые — для приглушённого текста и линий.
+   Базовые токены — единственное место, где заданы цвета. Остальные стили используют только переменные. */
+:root {
+  --white: #FFFFFF; --black: #0A0A0A;
+  --day-muted: #6B6B6B; --day-line: #D9D9D9;
+  --night-muted: #9A9A9A; --night-line: #2E2E2E;
+}
+/* Контекстные переменные: на белом — чёрный акцент, в тёмных секциях — белый */
+body.architecture { --accent-ink: var(--white); }
+.architecture :is(.hero, [data-arch-night-room], .arch-blog, .architecture-gallery, .arch-category-hero, .ih-about-night) {
+  --bg: var(--black); --surface: var(--black); --ink: var(--white);
+  --muted: var(--night-muted); --line: var(--night-line); --accent: var(--white); --accent-ink: var(--black);
+}
+body.architecture {
+  --bg: var(--white);
+  --surface: var(--white);
+  --ink: var(--black);
+  --muted: var(--day-muted);
+  --accent: var(--black);
+  --line: var(--day-line);
+  background: var(--bg);
+  color: var(--ink);
+}
+.architecture ::selection { background: var(--accent); color:var(--accent-ink); }
+.architecture a:focus-visible, .architecture button:focus-visible, .architecture summary:focus-visible { outline-color: var(--accent); }
+.architecture .site-header { background: var(--white); color: var(--black); border-color: var(--line); }
+.architecture .site-header .center-logo img, .architecture .footer-brand > img {
+  filter: brightness(0);
+}
+.architecture[data-architecture-room="night"] .site-header { background: var(--white); color: var(--black); }
+.architecture[data-architecture-room="night"] .site-header .center-logo img {
+  filter: brightness(0) invert(1);
+}
+.architecture .site-header .menu-toggle, .architecture #mobile-menu { background: var(--bg); color: var(--ink); border-color: var(--line); }
+.architecture[data-architecture-room="night"] .site-header .menu-toggle { background: var(--white); color: var(--black); }
+.architecture .hero {
+  --bg: var(--black); --surface: var(--black); --ink: var(--white); --muted: var(--night-muted);
+  background: var(--bg); color: var(--ink);
+}
+.architecture .hero-media { background: var(--black); }
+.architecture .hero-media > img, .architecture .hero-media > video { opacity: 1; }
+.architecture .hero-shield { background: linear-gradient(90deg, rgba(10, 10, 10, 0.96) 0%, rgba(10, 10, 10, 0.85) 45%, rgba(10, 10, 10, 0.72) 100%); }
+.architecture .hero-copy { max-width: 860px; gap: 30px; }
+.architecture .hero-copy > p:not(.eyebrow) { color: var(--white); }
+.architecture .hero h1 { font-size: clamp(76px, 7.2vw, 112px); line-height: 1.06; }
+.architecture .hero .eyebrow { color: var(--night-muted); letter-spacing: .12em; }
+.architecture .hero-bottom { color: var(--night-muted); border-top: 1px solid var(--line); padding-top: 10px; }
+.architecture .hero-bottom > span { padding-left: 190px; }
+.architecture .hero #video-toggle { background: var(--black); color: var(--white); border-color: var(--accent); border-radius: 10px; }
+.architecture .action-link {
+  color:var(--accent-ink); background: var(--accent); border-color: var(--accent);
+  border-radius: 12px; box-shadow: none; min-height: 48px;
+}
+.architecture .action-link:hover { background: var(--black); color: var(--white); border-color: var(--black); box-shadow: none; }
+.architecture .action-link img, .architecture .room-directory img {
+  filter: brightness(0);
+}
+.architecture .action-link:hover img { filter: brightness(0) invert(1); }
+.architecture .hero .action-link:hover, .architecture .architecture-gallery .action-link:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+.architecture .hero .action-link:hover img { filter: brightness(0); }
+.architecture .intro, .architecture .about, .architecture .categories, .architecture .detail, .architecture .journal { background: var(--white); }
+.architecture .living, .architecture footer, .architecture .scene-shell, .architecture .scene-copy, .architecture .scene-picture { background: var(--white); }
+.architecture .scene-picture:not([data-scene-state="0"]) .scene-image { background: var(--white); }
+.architecture .scene-caption { color: var(--black); background: var(--white); }
+.architecture .scene-progress { background: var(--line); }
+.architecture .scene-progress span { background: var(--accent); }
+.architecture .chapter-controls button, .architecture .view-controls button {
+  border-color: var(--line); background: var(--white); color: var(--black); box-shadow: none;
+}
+.architecture .chapter-controls button[aria-pressed="true"], .architecture .view-controls button[aria-pressed="true"] {
+  background: var(--accent); color:var(--accent-ink); border-color: var(--accent); box-shadow: none;
+}
+.architecture .chapter-controls button:hover, .architecture .view-controls button:hover { box-shadow: none; border-color: var(--black); }
+.architecture .detail-image { background: var(--white); border-color: var(--line); }
+.architecture .detail-image > span, .architecture .hotspot { background: var(--accent); color:var(--accent-ink); box-shadow: 0 4px 16px rgba(10, 10, 10, 0.13); }
+.architecture .room-stage { background: var(--white); }
+.architecture .room-scroll { scrollbar-color: var(--accent) var(--white); }
+.architecture .room-directory a { background: var(--white); color: var(--black); border-color: var(--line); }
+.architecture .room-directory a:hover { background: var(--white); }
+.architecture .room-dot { background: var(--accent); color:var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 15px rgba(10, 10, 10, 0.14); }
+.architecture .room-object-name { background: rgba(255, 255, 255, 0.93); color: var(--black); }
+.architecture .version-picker { background: var(--white); color: var(--black); border-color: var(--line); box-shadow: 0 5px 20px rgba(10, 10, 10, 0.10); }
+.architecture #motion-toggle { background: var(--white); color: var(--black); border-color: var(--line); }
+.architecture #zoom-dialog { background: var(--white); color: var(--black); border-color: var(--accent); box-shadow: 0 24px 80px rgba(10, 10, 10, 0.31); }
+.architecture #zoom-dialog::backdrop { background: rgba(10, 10, 10, 0.80); }
+.architecture #zoom-close, .architecture #zoom-original { color:var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+.architecture #zoom-close:hover { background: var(--white); }
+.architecture #zoom-close .close-mark { background: var(--white); color: var(--black); }
+.architecture .location-copy .map-route { background: var(--accent); color:var(--accent-ink); border-color: var(--accent); }
+.architecture .location-copy .map-route:hover { background: var(--black); color: var(--white); }
+.architecture .map-preview { border-color: var(--accent); }
+.architecture .map-pin { background: var(--accent); border-color: var(--white); box-shadow: 0 0 0 9px var(--line); }
+.architecture .map-pin-label { background: rgba(255, 255, 255, 0.93); border-color: var(--accent); color: var(--black); }
+.architecture .map-attribution { color: var(--muted); }
+/* The dark gallery owns its overflow: the document never scrolls sideways. */
+.architecture .architecture-gallery {
+  --bg: var(--black); --surface: var(--black); --ink: var(--white); --muted: var(--night-muted);
+  display: block; background: var(--bg); color: var(--ink); overflow: clip; position: relative;
+}
+.architecture .architecture-gallery-shell {
+  width: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 28px; padding: 48px 0 32px; background: var(--black);
+}
+.architecture .architecture-gallery-heading {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 36px; padding: 0 var(--gutter);
+}
+.architecture .architecture-gallery-heading .eyebrow { margin-bottom: 18px; color: var(--night-muted); letter-spacing: .1em; }
+.architecture .architecture-gallery-heading h2 { font-size: clamp(36px, 3.25vw, 56px); line-height: 1.1; }
+.architecture .architecture-gallery-heading .action-link { flex: none; align-self: flex-end; font-size: 12px; gap: 26px; }
+.architecture .architecture-wall {
+  width: 100%; max-width: 100%; min-width: 0; height: clamp(380px, 53svh, 560px);
+  overflow-x: auto; overflow-y: hidden; overscroll-behavior-inline: contain;
+  scrollbar-width: thin; scrollbar-color: var(--accent) var(--black); scroll-snap-type: x mandatory;
+}
+.architecture .architecture-wall:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+.architecture .architecture-wall-track {
+  display: flex; width: max-content; height: 100%; gap: 40px; padding: 0 var(--gutter);
+}
+.architecture .architecture-panel {
+  flex: 0 0 min(54vw, 760px); width: min(54vw, 760px); min-width: 0; height: 100%;
+  display: flex; flex-direction: column; gap: 20px; scroll-snap-align: start;
+  scroll-margin-inline: var(--gutter); text-decoration: none!important;
+}
+.architecture .architecture-panel-image {
+  min-height: 0; flex: 1; overflow: hidden; border: 1px solid var(--line); background: var(--black);
+}
+.architecture .architecture-panel-image img { width: 100%; height: 100%; object-fit: contain; }
+.architecture .architecture-panel-caption {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+  padding: 0 0 14px; border-bottom: 1px solid var(--line);
+}
+.architecture .architecture-panel-caption h3 { font-size: clamp(22px, 2.1vw, 34px); line-height: 1.12; max-width: 70%; }
+.architecture .architecture-panel-caption > span { color: var(--accent); white-space: nowrap; font-size: 11px; line-height: 20px; }
+.architecture .architecture-panel:hover .architecture-panel-image { border-color: var(--accent); }
+.architecture .architecture-panel:focus-visible { outline-offset: -2px; }
+.architecture .architecture-gallery-footer {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 18px 32px;
+  padding: 0 var(--gutter);
+}
+.architecture .architecture-gallery-hint { font-size: 11px; line-height: 19px; color: var(--night-muted); }
+.architecture .architecture-gallery-controls { display: flex; gap: 10px; }
+.architecture .architecture-gallery-controls button {
+  display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px;
+  background: var(--accent); color:var(--accent-ink); border: 1px solid var(--accent); font: 400 22px/1 'Inter Tight', sans-serif;
+}
+.architecture .architecture-gallery-controls button:hover { background: var(--white); border-color: var(--white); }
+.architecture .architecture-gallery-controls button:disabled { background: var(--black); color: var(--accent); border-color: var(--line); opacity: .45; cursor: default; }
+.architecture .architecture-wall-progress { grid-column: 1/-1; height: 2px; background: var(--line); }
+.architecture .architecture-wall-progress > span { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.architecture .architecture-gallery.is-pinned .architecture-gallery-shell { height: calc(100svh - var(--header)); min-height: 570px; }
+.architecture .architecture-gallery.is-pinned .architecture-wall { overflow: hidden; height: auto; scroll-snap-type: none; }
+.architecture .architecture-gallery.is-static .architecture-wall { scroll-snap-type: none; scroll-behavior: auto; }
+@media (max-width: 1100px) {
+  .architecture .architecture-gallery-heading h2 { font-size: 40px; }
+  .architecture .architecture-panel { flex-basis: 70vw; width: 70vw; }
+  .architecture .architecture-panel-caption { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .architecture .architecture-panel-caption h3 { max-width: 100%; }
+}
+@media (max-width: 760px) {
+  .architecture .hero { min-height: 740px; }
+  .architecture .hero h1 { font-size: 61px; line-height: 1.08; }
+  .architecture .hero-copy { padding-top: 62px; gap: 26px; }
+  .architecture .hero-shield { background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.86) 60%, rgba(10, 10, 10, 0.72) 100%); }
+  .architecture .hero-bottom { justify-content: flex-end; }
+  .architecture .hero-bottom > span { display: none; }
+  .architecture .hero #video-toggle { padding: 8px 10px; font-size: 10px; }
+  .architecture .architecture-gallery-shell { padding: 52px 0 40px; gap: 28px; }
+  .architecture .architecture-gallery-heading { flex-direction: column; align-items: flex-start; gap: 24px; padding-inline: 22px; }
+  .architecture .architecture-gallery-heading h2 { font-size: 36px; line-height: 1.12; }
+  .architecture .architecture-gallery-heading .action-link { align-self: flex-start; font-size: 12px; }
+  .architecture .architecture-wall { height: 385px; }
+  .architecture .architecture-wall-track { gap: 20px; padding-inline: 22px; }
+  .architecture .architecture-panel { flex-basis: min(84vw, 340px); width: min(84vw, 340px); gap: 18px; }
+  .architecture .architecture-panel-caption { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .architecture .architecture-panel-caption h3 { font-size: 25px; line-height: 1.12; max-width: 100%; }
+  .architecture .architecture-panel-caption > span { font-size: 11px; }
+  .architecture .architecture-gallery-footer { padding-inline: 22px; gap: 18px 16px; }
+  .architecture .architecture-gallery-controls { gap: 8px; }
+  .architecture .architecture-gallery-controls button { width: 44px; height: 44px; }
+  .architecture .architecture-gallery-hint { font-size: 10px; line-height: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(body.architecture) { scroll-behavior: auto; }
+  .architecture *, .architecture *::before, .architecture *::after { animation: none!important; transition: none!important; }
+  .architecture .architecture-wall { scroll-snap-type: none; scroll-behavior: auto; }
+}

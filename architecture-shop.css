@@ -1,0 +1,147 @@
+/* Architecture only. Never loaded by Forma, Volume, Contour or their catalogues. */
+.architecture .arch-header {background:var(--white);backdrop-filter:blur(24px) saturate(125%);-webkit-backdrop-filter:blur(24px) saturate(125%);}
+.architecture[data-architecture-room="night"] .arch-header {background:var(--white);}
+.architecture .arch-header .menu-toggle,.architecture[data-architecture-room="night"] .arch-header .menu-toggle {background:transparent;}
+.architecture :is(.action-link,.arch-add,.arch-outline,.arch-small,.menu-toggle,.room-directory a,.arch-blog-filters button,.arch-dialog-top>button,.arch-quantity button,#video-toggle,#motion-toggle,.arch-category-tabs a,.arch-back-link,.arch-product-thumbs button,.map-route) {border-radius:999px!important;}
+.architecture #mobile-menu {background:var(--white);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);}
+.architecture[data-architecture-room="night"] #mobile-menu {background:var(--white);color:var(--black);}
+.architecture .arch-utility {border-radius:999px;padding:0 5px;}
+.architecture .arch-outline {padding:13px 24px;border:1px solid var(--accent);background:transparent;color:inherit;min-height:48px;font:inherit;font-size:12px;cursor:pointer;}
+.architecture .map-preview {background:var(--black);border-color:var(--line);}
+.architecture .map-tiles {filter:grayscale(1) contrast(1.05) brightness(.95);opacity:1;}
+.architecture .map-preview:after {content:none;display:none;}
+.architecture .map-pin {background:var(--black);border-color:var(--white);box-shadow:0 0 0 9px rgba(10, 10, 10, 0.35);}
+.architecture .map-pin-label {background:var(--white);color:var(--black);border-color:var(--black);}
+.architecture .arch-dialog.is-search {inset:0 0 0 auto;margin:0;width:min(620px,100%);height:100dvh;max-height:100dvh;max-width:none;border-radius:24px 0 0 24px;padding:34px;animation:arch-search-enter .5s cubic-bezier(.22,1,.36,1);}
+.architecture .arch-dialog.is-search .arch-result-grid {grid-template-columns:1fr 1fr;}
+.architecture .arch-dialog.is-search.is-closing {animation:arch-search-exit .25s ease forwards;}
+@keyframes arch-search-enter {from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes arch-search-exit {to{transform:translateX(100%);opacity:0}}
+.architecture .arch-result {padding:0;border:0;display:flex;flex-direction:column;}
+.architecture .arch-result img {padding:0;object-fit:contain;background:var(--white);}
+.architecture .arch-result .arch-add {margin-top:auto;}
+.architecture.architecture-store {padding-top:var(--header);}
+.architecture .arch-category-hero {height:clamp(430px,62svh,680px);min-height:430px;position:relative;overflow:clip;background:var(--black);color:var(--white);display:flex;align-items:flex-end;}
+.architecture .arch-category-hero>img,.architecture .arch-category-hero>video {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.architecture .arch-category-shade {position:absolute;inset:0;background:linear-gradient(0deg,rgba(10, 10, 10, 0.86),transparent 90%);}
+.architecture .arch-category-copy {position:relative;z-index:1;padding:70px var(--gutter);max-width:1100px;}
+.architecture .arch-category-copy .eyebrow {color:var(--white);font-size:10px;letter-spacing:.12em;}
+.architecture .arch-category-copy h1 {font-family:'Inter Tight',sans-serif;font-size:clamp(50px,6vw,92px);line-height:1.1;margin:20px 0;}
+.architecture .arch-category-copy>p:not(.eyebrow) {font-size:14px;line-height:1.8;max-width:500px;}
+.architecture .arch-category-copy a {display:inline-flex;align-items:center;gap:25px;font-size:12px;margin-top:28px;border-bottom:1px solid var(--accent);padding-bottom:8px;}
+.architecture .arch-category-hero #video-toggle {position:absolute;z-index:2;bottom:28px;right:var(--gutter);border:1px solid var(--accent);background:rgba(10, 10, 10, 0.50);color:var(--white);min-height:44px;padding:9px 20px;font-size:11px;}
+.architecture .arch-shop {padding-top:90px;}
+.architecture .arch-shop-heading {display:flex;justify-content:space-between;align-items:flex-end;gap:32px;}
+.architecture .arch-shop-heading h2 {font-size:clamp(36px,4vw,60px);margin-top:18px;}
+.architecture .arch-catalog-label {display:grid;gap:10px;font-size:11px;color:var(--muted);min-width:195px;}
+.architecture .arch-catalog-label select,.architecture .arch-shop-refine select {border:1px solid var(--black);border-radius:999px;padding:13px 44px 13px 20px;background:var(--white);color:var(--black);font:inherit;min-height:48px;max-width:100%;}
+.architecture .arch-catalog-note {font-size:11px;color:var(--muted);margin-top:22px;}
+.architecture .arch-category-tabs {display:flex;flex-wrap:wrap;gap:10px;padding-top:32px;margin-top:32px;border-top:1px solid var(--line);}
+.architecture .arch-category-tabs a {padding:13px 22px;border:1px solid var(--black);background:var(--white);color:var(--black);min-height:48px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;}
+.architecture .arch-category-tabs a[aria-current="true"] {background:var(--accent);border-color:var(--accent);color:var(--accent-ink);}
+.architecture .arch-shop-refine {display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin:28px 0 36px;}
+.architecture .arch-shop-refine label {display:flex;align-items:center;gap:12px;font-size:11px;}
+.architecture #shop-count {font-size:11px;color:var(--muted);margin-left:auto;}
+.architecture .arch-product-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 28px;}
+.architecture .arch-shop[data-category-key="tables"] .arch-product-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+.architecture .arch-shop[data-category-key="tables"] .arch-product-card figure {aspect-ratio:16/9;}
+.architecture .arch-shop[data-category-key="tables"] .arch-product-card img {object-fit:cover;}
+.architecture .arch-product-card {min-width:0;display:flex;flex-direction:column;}
+.architecture .arch-product-card>a {display:flex;flex-direction:column;flex:1;text-decoration:none;}
+/* фото на всю карточку: квадрат держит рамку, фото внутри не растягивает её по высоте (28.10) */
+.architecture .arch-product-card figure {position:relative;overflow:clip;aspect-ratio:1;margin:0;padding:0;background:none;}
+.architecture .arch-product-card img {position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;padding:0;transition:transform .5s cubic-bezier(.22,1,.36,1);}
+.architecture .arch-product-card>a:hover img {transform:scale(1.025);}
+.architecture .arch-product-card-copy {padding:24px 0;}
+.architecture .arch-product-card-copy .eyebrow {font-size:10px;line-height:1.6;}
+.architecture .arch-product-card-copy h3 {font-size:25px;line-height:1.3;margin:9px 0 14px;overflow-wrap:anywhere;}
+.architecture .arch-product-card-copy>p:last-child {font-size:12px;line-height:1.9;color:var(--muted);}
+.architecture .arch-product-card .arch-add {width:100%;margin-top:auto;min-height:48px;font-size:12px;}
+.architecture .arch-shop-empty {font-size:14px;line-height:1.8;padding-block:40px;}
+.architecture .arch-back-link {display:inline-flex;min-height:44px;align-items:center;padding:9px 20px;border:1px solid var(--accent);margin-bottom:40px;font-size:12px;}
+.architecture .arch-product-layout {display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:65px;align-items:start;}
+.architecture .arch-product-layout>div {min-width:0;}
+/* фото товара на всю площадь блока: блок принимает пропорции кадра, без полос и бежевой подложки (28.10) */
+.architecture .arch-product-photo {margin:0;background:#FFFFFF;}
+.architecture .arch-product-photo img {display:block;width:100%;height:auto;object-fit:cover;padding:0;}
+.architecture .arch-product-photo video {display:block;width:100%;max-height:80vh;background:#FFFFFF;object-fit:contain;}
+.architecture .arch-product-photo [hidden] {display:none;}
+/* отделка внутри карточки (скульптуры): кнопки-пилюли, как фильтры каталога */
+.architecture .arch-product-finishes {display:flex;flex-wrap:wrap;gap:8px;padding:16px 0 0;}
+.architecture .arch-product-finishes[hidden] {display:none;}
+.architecture .arch-product-finishes button {min-height:36px;padding:6px 14px;border:1px solid var(--black);border-radius:999px;background:var(--white);color:var(--black);font:inherit;font-size:11px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;}
+.architecture .arch-product-finishes button[aria-pressed="true"] {background:var(--black);color:var(--white);}
+.architecture .arch-product-thumbs {display:flex;gap:12px;overflow-x:auto;padding:16px 2px 10px;scrollbar-width:thin;scrollbar-color:var(--accent) transparent;}
+.architecture .arch-product-thumbs button {flex:0 0 72px;width:72px;height:72px;padding:0;overflow:clip;border:1px solid var(--line);background:var(--white);}
+.architecture .arch-product-thumbs button {position:relative;}
+.architecture .arch-thumb-play {position:absolute;inset:0;display:grid;place-items:center;color:var(--white);font-size:18px;text-shadow:0 0 6px rgba(0,0,0,.6);pointer-events:none;}
+.architecture .arch-product-thumbs img {width:100%;height:100%;object-fit:cover;}
+.architecture .arch-product-thumbs button[aria-pressed="true"] {border:3px solid var(--accent);}
+.architecture .arch-product-copy h1 {font-size:clamp(36px,4vw,64px);line-height:1.1;margin:22px 0 28px;}
+.architecture #product-description {font-size:14px;line-height:2;color:var(--muted);}
+.architecture #product-specs {margin:32px 0;border-top:1px solid var(--line);}
+.architecture #product-specs>div {display:grid;grid-template-columns:110px 1fr;gap:22px;padding:18px 0;border-bottom:1px solid var(--line);font-size:12px;line-height:1.8;}
+.architecture #product-specs dt {color:var(--muted);}
+.architecture #product-specs dd {margin:0;}
+.architecture .arch-product-price-note {font-size:11px;color:var(--muted);}
+.architecture .arch-product-actions {display:flex;flex-direction:column;gap:12px;align-items:stretch;margin-top:28px;}
+.architecture .arch-product-config {margin-top:90px;padding-top:60px;border-top:1px solid var(--line);}
+.architecture .arch-product-config h3 {font-size:36px;line-height:1.25;margin:20px 0;}
+.architecture .arch-product-config>p:not(.eyebrow) {font-size:13px;line-height:1.9;color:var(--muted);margin-bottom:32px;}
+.architecture .arch-product-config-placeholder {min-height:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:36px;text-align:center;}
+.architecture .arch-product-config-placeholder svg {width:140px;height:140px;color:var(--accent);}
+.architecture .arch-product-config-placeholder>span {font-size:21px;}
+.architecture .arch-product-config-placeholder>small {font-size:12px;line-height:1.8;color:var(--night-muted);}
+@media(max-width:1100px){.architecture .arch-product-layout{gap:36px}.architecture .arch-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 22px}}
+@media(max-width:760px){
+ .architecture .arch-dialog.is-search {border-radius:0;padding:24px 18px;}
+ .architecture .arch-category-hero {height:520px;min-height:520px;}
+ .architecture .arch-category-copy {padding:50px 22px 95px;}
+ .architecture .arch-category-copy h1 {font-size:clamp(30px,9.5vw,44px);overflow-wrap:normal;}
+ .architecture .arch-category-copy>p:not(.eyebrow) {font-size:12px;}
+ .architecture .arch-category-hero #video-toggle {right:22px;bottom:22px;}
+ .architecture .arch-shop {padding-top:60px;}
+ .architecture .arch-shop-heading {display:block;}
+ .architecture .arch-shop-heading h2 {font-size:36px;line-height:1.2;}
+ .architecture .arch-catalog-label {margin-top:28px;width:100%;}
+ .architecture .arch-category-tabs {display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+ .architecture .arch-category-tabs a {font-size:10px;line-height:1.6;padding:11px 13px;text-align:center;}
+ .architecture #shop-count {width:100%;margin:0;}
+ .architecture .arch-shop-refine label {display:grid;gap:8px;width:100%;}
+ .architecture .arch-product-grid,.architecture .arch-shop[data-category-key="tables"] .arch-product-grid {grid-template-columns:1fr;gap:42px;}
+ .architecture .arch-product-card-copy h3 {font-size:25px;}
+ .architecture .arch-product-card-copy>p:last-child {font-size:12px;}
+ .architecture .arch-product-layout {grid-template-columns:minmax(0,1fr);gap:36px;}
+ .architecture #product-specs>div {grid-template-columns:85px minmax(0,1fr);gap:15px;}
+ .architecture .arch-product-copy h1 {font-size:38px;}
+ .architecture .arch-product-config {margin-top:55px;padding-top:40px;}
+ .architecture .arch-product-config h3 {font-size:29px;}
+ .architecture .arch-product-config-placeholder {min-height:380px;padding:28px 18px;}
+ .architecture .arch-product-config-placeholder>span {font-size:18px;}
+}
+@media(prefers-reduced-motion:reduce){.architecture .arch-dialog.is-search,.architecture .arch-dialog.is-search.is-closing{animation:none}.architecture .arch-product-card img{transition:none}}
+.architecture .arch-configurator-embed {position:relative;}
+.architecture .arch-configurator-embed>.arch-product-config-placeholder {position:absolute;inset:0;pointer-events:none;}
+/* заголовок товара получает фокус программно (для экранных читалок) — рамка фокуса ему не нужна */
+.architecture #product-title:focus {outline:none;}
+
+/* ── Столы: «Столешница: керамика 260×120» — образцы декоров и крупный просмотр (29.10) ── */
+.architecture .arch-product-ceramics {margin-top:clamp(48px,6vw,88px);padding-top:clamp(28px,3vw,44px);border-top:1px solid var(--line);}
+.architecture .arch-product-ceramics[hidden] {display:none;}
+.architecture .arch-product-ceramics h3 {margin:6px 0 10px;font-size:clamp(22px,2.4vw,34px);font-weight:200;text-transform:uppercase;letter-spacing:.02em;}
+.architecture .arch-product-ceramics > p:not(.eyebrow) {max-width:640px;margin:0 0 24px;color:var(--muted);font-size:14px;line-height:1.6;}
+.architecture .arch-ceramics-grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:18px 14px;}
+.architecture .arch-ceramic-swatch {display:grid;gap:8px;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;}
+.architecture .arch-ceramic-swatch img {display:block;width:100%;aspect-ratio:1;object-fit:cover;border:1px solid var(--line);}
+.architecture .arch-ceramic-swatch span {font-size:11px;line-height:1.35;letter-spacing:.04em;text-transform:uppercase;}
+.architecture .arch-ceramic-swatch:hover img,.architecture .arch-ceramic-swatch:focus-visible img {outline:2px solid var(--black);outline-offset:2px;}
+.architecture .arch-ceramics-all {display:inline-block;margin-top:24px;color:var(--black);font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+.architecture .arch-ceramic-dialog {width:min(1100px,calc(100vw - 32px));max-height:calc(100vh - 32px);padding:clamp(16px,2.4vw,28px);border:0;background:var(--white);color:var(--black);overflow:auto;}
+.architecture .arch-ceramic-dialog::backdrop {background:rgba(10,10,10,.72);}
+.architecture .arch-ceramic-dialog-top {display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px;}
+.architecture .arch-ceramic-dialog-top h3 {margin:0;font-size:clamp(18px,2vw,26px);font-weight:300;text-transform:uppercase;letter-spacing:.04em;}
+.architecture .arch-ceramic-dialog-top button {min-height:44px;padding:8px 16px;border:1px solid var(--black);border-radius:999px;background:var(--white);color:var(--black);font:inherit;font-size:11px;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;}
+.architecture .arch-ceramic-dialog-body {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.architecture .arch-ceramic-dialog-body figure {margin:0;}
+.architecture .arch-ceramic-dialog-body :is(img,video) {display:block;width:100%;max-height:70vh;object-fit:contain;background:var(--white);}
+.architecture .arch-ceramic-dialog-body figcaption {margin-top:6px;color:var(--muted);font-size:12px;}

@@ -1,0 +1,101 @@
+/* Общий стиль сайта (28.10): шрифт Inter Tight, ч/б кнопки, шапка, мобильное меню, плавающая консультация, окна.
+   Подключается на всех страницах (главная, каталог, статьи, доставка) после старых стилей концепции.
+   Цвета — только переменные из architecture-daynight.css. Конфигуратор стола — отдельный документ, сюда не входит. */
+
+/* ── Inter Tight, локальные woff2 из @fontsource/inter-tight 5.3.0, лицензия OFL (assets/fonts/inter-tight/OFL.txt) ── */
+@font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 200; font-display: swap; src: url(assets/fonts/inter-tight/inter-tight-cyrillic-200-normal.woff2) format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 200; font-display: swap; src: url(assets/fonts/inter-tight/inter-tight-latin-200-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 300; font-display: swap; src: url(assets/fonts/inter-tight/inter-tight-cyrillic-300-normal.woff2) format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 300; font-display: swap; src: url(assets/fonts/inter-tight/inter-tight-latin-300-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 400; font-display: swap; src: url(assets/fonts/inter-tight/inter-tight-cyrillic-400-normal.woff2) format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 400; font-display: swap; src: url(assets/fonts/inter-tight/inter-tight-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+body.architecture, body.architecture * { font-family: 'Inter Tight', Arial, sans-serif !important; }
+body.architecture { font-weight: 300; }
+.architecture ::selection { background: var(--black); color: var(--white); }
+.architecture a:focus-visible, .architecture button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.architecture .eyebrow { color: var(--muted); font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
+/* ── Кнопки: на светлом — чёрные, на тёмном — белая обводка, при наведении белая заливка ── */
+.architecture .action-link, .architecture .arch-add, .architecture .arch-small {
+  background: var(--black); color: var(--white); border: 1px solid var(--black); box-shadow: none;
+  font-weight: 400; text-transform: uppercase; letter-spacing: .06em; font-size: 11px;
+}
+.architecture .action-link:hover, .architecture .arch-add:hover { background: var(--white); color: var(--black); border-color: var(--black); }
+.architecture .action-link img { filter: brightness(0) invert(1); }
+.architecture .action-link:hover img { filter: brightness(0); }
+.architecture :is(.hero, .ih-about-night, .arch-blog, footer#showroom) :is(.action-link, .map-route) {
+  background: transparent; color: var(--white); border: 1px solid var(--white);
+}
+.architecture :is(.hero, .ih-about-night, .arch-blog, footer#showroom) :is(.action-link, .map-route):hover {
+  background: var(--white); color: var(--black); border-color: var(--white);
+}
+.architecture :is(.hero, footer#showroom) .action-link:hover img { filter: brightness(0); }
+
+/* ── Шапка: матовое стекло (28.10) — белый 72% + размытие, текст и логотип чёрные на любом фоне;
+   закреплена, снизу тонкая линия, без тени. Без поддержки blur — белый 95% (ниже, @supports). ── */
+.architecture .site-header.arch-header,
+.architecture[data-architecture-room="night"] .site-header.arch-header {
+  background: rgba(255, 255, 255, .72); color: var(--black); border-bottom: 1px solid rgba(12, 9, 9, .06);
+  -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); box-shadow: none;
+}
+/* логотип — слово IDODOM, как в образце: тонкий гротеск капсом почти без разрядки, чёрный */
+.architecture .site-header.arch-header .center-logo {
+  width: auto; color: inherit; text-decoration: none; white-space: nowrap;
+  font-size: 20px; line-height: 1; font-weight: 300; letter-spacing: .02em; text-transform: uppercase;
+}
+.architecture .site-header.arch-header .center-logo:hover { opacity: .6; }
+@media (max-width: 760px) { .architecture .site-header.arch-header .center-logo { font-size: 16px; } }
+/* значки мессенджеров — цветные, круглые/фирменной формы, 24px; не перекрашиваются */
+.architecture :is(.arch-contact, .arch-mobile-contact) .arch-brand-icon { display: block; width: 24px; height: 24px; flex-shrink: 0; }
+.architecture .arch-header .page-nav { gap: 0; }
+.architecture .arch-header :is(.page-nav a, .arch-utility span, .arch-contact span, .menu-toggle) {
+  font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .08em;
+}
+.architecture .arch-header .page-nav a + a::before { content: "|"; margin: 0 14px; opacity: .45; }
+.architecture .arch-header .page-nav a:hover, .architecture .arch-utility:hover { color: inherit; opacity: .6; }
+.architecture .site-header .menu-toggle, .architecture[data-architecture-room="night"] .site-header .menu-toggle {
+  background: transparent; color: inherit; border-color: currentColor;
+}
+.architecture [data-arch-cart-count] { background: var(--black); color: var(--white); }
+.architecture #mobile-menu,
+.architecture[data-architecture-room="night"] #mobile-menu {
+  background: rgba(255, 255, 255, .72); color: var(--black); border-color: var(--day-line);
+  -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .architecture .site-header.arch-header, .architecture[data-architecture-room="night"] .site-header.arch-header,
+  .architecture #mobile-menu, .architecture[data-architecture-room="night"] #mobile-menu { background: rgba(255, 255, 255, .95); }
+}
+.architecture #mobile-menu :is(a, button) { border-color: currentColor; text-transform: uppercase; font-size: 12px; font-weight: 400; letter-spacing: .08em; }
+
+/* ── Плавающая кнопка консультации ─────────────────────────── */
+.architecture .arch-consult-fixed { background: var(--black); color: var(--white); border: 1px solid rgba(255, 255, 255, .55); box-shadow: 0 6px 24px rgba(0, 0, 0, .22); text-transform: uppercase; font-size: 11px; letter-spacing: .06em; font-weight: 400; }
+.architecture .arch-consult-fixed svg { background: var(--white); color: var(--black); }
+.architecture .arch-consult-fixed:hover { color: var(--night-muted); background: var(--black); }
+
+/* ── Окна поиска, корзины, консультации, статьи ─────────────── */
+.architecture .arch-dialog, .architecture #zoom-dialog { background: var(--white); color: var(--black); border-color: var(--day-line); }
+.architecture .arch-dialog::backdrop, .architecture #zoom-dialog::backdrop { background: rgba(10, 10, 10, .8); }
+.architecture :is(.arch-dialog-top, .arch-cart-row, .arch-result, .arch-account-feature, .arch-avatar) { border-color: var(--day-line); }
+.architecture .arch-dialog-top > button, .architecture .arch-dialog button.arch-small, .architecture .arch-quantity button { border-color: var(--black); color: var(--black); background: none; }
+.architecture .arch-search-input { border-bottom-color: var(--black); color: var(--black); }
+.architecture :is(.arch-dialog .arch-muted, .arch-search-summary, .arch-result p, .arch-cart-row p) { color: var(--day-muted); }
+.architecture :is(.arch-result img, .arch-cart-row img) { background: var(--white); }
+.architecture .arch-article-image { background: var(--black); }
+.architecture .arch-avatar { background: var(--black); color: var(--white); }
+.architecture .arch-toast { background: var(--black); color: var(--white); border-color: var(--white); }
+.architecture #zoom-close, .architecture #zoom-original { background: var(--black); color: var(--white); border-color: var(--black); }
+.architecture #zoom-close .close-mark { background: var(--white); color: var(--black); }
+
+
+/* ── Каталог, карточка товара: заголовки капсом, тонкие (как на главной) ─── */
+.architecture :is(#category-hero-title, #category-heading, #product-title, .arch-dialog-top h2) {
+  text-transform: uppercase; font-weight: 200 !important; letter-spacing: .02em;
+}
+.architecture :is(.arch-product-card-copy h3, .arch-result h3, .arch-cart-row h3, .arch-dialog h3, #product-config-title, .arch-account-feature h3) {
+  text-transform: uppercase; font-weight: 300 !important; letter-spacing: .04em;
+}
+.architecture :is(.arch-category-tabs a, .arch-outline, .arch-back-link, .arch-category-copy > a, #product-specs dt) {
+  text-transform: uppercase; font-weight: 400; letter-spacing: .06em; font-size: 11px;
+}
+.architecture :is(.arch-product-card-copy > p:last-child, #product-description, #product-specs dd) { font-weight: 300; }

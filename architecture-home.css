@@ -1,0 +1,296 @@
+/* Главная Architecture, редизайн 28.10 (v2): строго чёрно-белая, шрифт Inter Tight.
+   Светлая часть — #FFFFFF, тёмная — #0A0A0A, никакой латуни и тёплых оттенков.
+   Подключается только в gallery.html (body.ih-home), последним — перекрывает общие стили концепции. */
+
+/* ── Контекст главной: только белый, чёрный и нейтральные серые ─────── */
+/* базовые цвета (--white, --black, --day-*, --night-*) заданы один раз в architecture-daynight.css */
+body.ih-home {
+  --night-ink: var(--white);
+  --bg: var(--white); --surface: var(--white); --ink: var(--black); --muted: var(--day-muted);
+  --accent: var(--black); --line: var(--day-line); --head: 'Inter Tight';
+  background: var(--white); color: var(--black);
+}
+/* главные заголовки: капс, тонкие */
+.ih-home :is(.hero h1, .ih-about-day h2, .arch-blog h2, .contact-invitation h2) {
+  text-transform: uppercase; font-weight: 200 !important; letter-spacing: .02em;
+}
+
+/* ── Первый экран ─────────────────────────────────────────── */
+.ih-home .hero { --bg: var(--black); --surface: var(--black); --ink: var(--white); --muted: var(--night-muted); background: var(--black); color: var(--white); }
+.ih-home .hero-media { background: var(--black); }
+.ih-home .ih-hero .hero-media > img, .ih-home .ih-hero .hero-media > video { object-fit: cover; object-position: 60% 50%; }
+.ih-home .ih-hero .hero-shield { background: linear-gradient(90deg, rgba(10, 10, 10, .85) 0%, rgba(10, 10, 10, .5) 42%, rgba(10, 10, 10, 0) 75%); }
+.ih-home .hero .eyebrow, .ih-home .hero-copy > p:not(.eyebrow) { color: var(--night-muted); }
+.ih-home .hero-copy > p:not(.eyebrow) { color: var(--white); font-weight: 300; }
+.ih-home .hero h1 { font-size: clamp(56px, 6.2vw, 100px); line-height: 1.04; }
+.ih-home .hero-bottom { color: var(--night-muted); border-top: 1px solid var(--night-line); }
+/* плавающая «Получить консультацию» не наезжает на нижнюю строку первого экрана */
+.ih-home .hero-bottom { right: calc(var(--gutter) + 280px); }
+/* светлый ролик (tone:'light'): тёмный текст #0C0909, светлая вуаль под текстом; низ растворяется в #EFE7DF (фон «Коллекций») */
+/* у кнопки — #main: общее правило кнопок на тёмном (architecture-site.css) содержит footer#showroom и весит как id */
+.ih-home .ih-hero.is-light { color: #0C0909; }
+.ih-home .ih-hero.is-light .hero-shield {
+  background: linear-gradient(to bottom, transparent calc(100% - 120px), #EFE7DF 100%),
+    linear-gradient(90deg, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, .5) 36%, rgba(255, 255, 255, 0) 68%);
+}
+.ih-home .ih-hero.is-light :is(.eyebrow, .hero-copy > p:not(.eyebrow), .hero-bottom) { color: #0C0909; }
+.ih-home .ih-hero.is-light .hero-bottom { border-top-color: rgba(12, 9, 9, .25); }
+.architecture #main .ih-hero.is-light .action-link { color: #0C0909; border-color: #0C0909; }
+.architecture #main .ih-hero.is-light .action-link img { filter: brightness(0); }
+.architecture #main .ih-hero.is-light .action-link:hover { background: #0C0909; color: var(--white); border-color: #0C0909; }
+.architecture #main .ih-hero.is-light .action-link:hover img { filter: brightness(0) invert(1); }
+/* ролик уже растворился в #EFE7DF — раздел начинается сразу с #EFE7DF, без тёмного градиента */
+.ih-home .ih-hero.is-light + .ic-collections {
+  background: linear-gradient(to bottom, var(--ic-bg) calc(100% - 120px), #FFFFFF 100%);
+  padding-top: clamp(56px, 6vw, 96px);
+}
+
+/* ── Коллекции: 1:1 по образцу концепция-коллекции.png, светлая версия ──
+   Цвета заданы заказчиком (28.10): фон раздела #EFE7DF, текст #0C0909, вторичный #6F6A66, линии #B5AEA8, заголовок #2A2522.
+   Фото сливаются с фоном, как на образце: края карточек растворяются (mask-image — прозрачность, не затемнение).
+   Переходы — градиент 120px: сверху из тёмного низа видео (#0A0A0A, фон первого экрана), снизу — в белое «О нас». */
+.ih-home .ic-collections {
+  --ic-bg: #EFE7DF; --ic-ink: #0C0909; --ic-muted: #6F6A66; --ic-line: #B5AEA8; --ic-title: #2A2522;
+  display: block; color: var(--ic-ink);
+  background: linear-gradient(to bottom, var(--black) 0, var(--ic-bg) 120px, var(--ic-bg) calc(100% - 120px), #FFFFFF 100%);
+  padding: clamp(160px, 14vw, 210px) var(--gutter) clamp(120px, 11vw, 180px);
+}
+.ic-stage, .ic-links { max-width: 1600px; margin-inline: auto; }
+.ic-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* заголовок раздела (h1 страницы): по центру над карточками 01–02 */
+.ic-heading {
+  max-width: 1600px; margin: 0 auto clamp(40px, 5vw, 80px); text-align: center;
+  font-size: clamp(34px, 4.2vw, 64px); line-height: 1.05; font-weight: 200; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--ic-title);
+}
+
+/* карточки: сетка 690×530 образца */
+.ic-stage { position: relative; aspect-ratio: 690 / 530; container-type: inline-size; }
+.ic-lines { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: var(--ic-line); stroke-width: 1; pointer-events: none; }
+.ic-lines path { vector-effect: non-scaling-stroke; }
+.ic-card { display: block; color: inherit; text-decoration: none; }
+/* края фото растворяются в фоне: затухание --fl/--fr/--ft/--fb (≈7%, меньше там, где предмет близко к краю) */
+.ic-media {
+  position: absolute; left: calc(var(--x) / 6.9 * 1%); top: calc(var(--y) / 5.3 * 1%);
+  width: calc(var(--w) / 6.9 * 1%); aspect-ratio: var(--w) / var(--h); overflow: hidden;
+  --fade-x: linear-gradient(to right, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
+  --fade-y: linear-gradient(to bottom, transparent 0, #000 var(--ft), #000 calc(100% - var(--fb)), transparent 100%);
+  -webkit-mask-image: var(--fade-x), var(--fade-y); -webkit-mask-composite: source-in;
+  mask-image: var(--fade-x), var(--fade-y); mask-composite: intersect;
+}
+/* фото 4:3 заполняют рамку образца: срезаются только края стены и пола, предмет целиком */
+.ic-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.22, 1, .36, 1); }
+.ic-label {
+  position: absolute; left: calc(var(--lx) / 6.9 * 1%); top: calc(var(--ly) / 5.3 * 1%);
+  display: flex; align-items: flex-start; gap: 1.1cqw;
+}
+.ic-card.is-stacked .ic-label { flex-direction: column; gap: .9cqw; width: calc(var(--lw) / 6.9 * 1%); }
+/* номер — в 1,5 раза крупнее названия */
+.ic-num { font-size: 2.775cqw; line-height: 1; font-weight: 200; letter-spacing: -.02em; white-space: nowrap; }
+.ic-text { display: flex; flex-direction: column; gap: .55cqw; padding-top: .7cqw; }
+.ic-card.is-stacked .ic-text { padding-top: 0; }
+.ic-title { font-size: 1.85cqw; line-height: 1.18; font-weight: 300; text-transform: uppercase; letter-spacing: .04em; }
+.ic-text small { font-size: max(11px, .8cqw); line-height: 1.45; font-weight: 400; color: var(--ic-muted); }
+.ic-card:hover .ic-media img { transform: scale(1.035); }
+.ic-card:hover :is(.ic-title, .ic-num) { opacity: .6; }
+/* рамка фокуса — у подписи: у фото края прозрачные (маска) */
+.ic-card:focus-visible { outline: none; }
+.ic-card:focus-visible .ic-label { outline: 2px solid var(--ic-ink); outline-offset: 6px; }
+
+/* строка «Бренды — Коллекции — Оплата и доставка — Шоурум»: названия в одну строку, линия занимает остаток */
+.ic-links {
+  display: flex; flex-wrap: wrap; gap: 28px clamp(16px, 2vw, 32px);
+  margin-top: clamp(48px, 6vw, 96px); align-items: flex-start;
+}
+.ic-link {
+  flex: 1 1 0; min-width: max-content;
+  display: grid; grid-template-columns: auto minmax(24px, 1fr); align-items: center; column-gap: clamp(12px, 1.4vw, 22px);
+  min-height: 44px; align-content: start; color: inherit; text-decoration: none;
+}
+.ic-link::after { content: ""; grid-column: 2; grid-row: 1; height: 1px; background: var(--ic-line); }
+.ic-link-title { font-size: clamp(20px, 2.2vw, 38px); line-height: 1.1; font-weight: 300; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+.ic-link small { grid-column: 1 / -1; margin-top: 10px; font-size: 12px; line-height: 1.5; font-weight: 400; color: var(--ic-muted); }
+.ic-link:hover .ic-link-title { opacity: .6; }
+
+/* ── «О нас»: белая часть → резкая граница → #0A0A0A ─────── */
+.ih-home .ih-about { padding: 0; background: var(--black); color: var(--white); }
+.ih-about-day {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: end;
+  background: var(--white); color: var(--black);
+  padding-bottom: clamp(150px, 15vw, 240px) !important;
+}
+.ih-about-day h2 { font-size: clamp(38px, 4.2vw, 68px); line-height: 1.1; margin-top: 24px; }
+.ih-about-lead { font-size: 15px; line-height: 1.9; max-width: 580px; }
+.ih-home .ih-about-night {
+  --bg: var(--black); --surface: var(--black); --ink: var(--white); --muted: var(--night-muted);
+  display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 0 clamp(32px, 5vw, 80px);
+  background: var(--black); color: var(--white); padding-top: 0 !important;
+}
+/* без блока команды хватает половины обычного отступа: дальше сразу блог на том же фоне */
+.ih-home .ih-about-night.is-compact { padding-bottom: clamp(40px, 5vw, 72px) !important; }
+.ih-about-photo { margin: calc(-1 * clamp(110px, 11vw, 180px)) 0 0; min-width: 0; }
+.ih-about-photo img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; }
+.ih-about-copy { align-self: end; display: flex; flex-direction: column; gap: 24px; }
+.ih-about-copy > p { font-size: 15px; line-height: 1.9; max-width: 520px; }
+.ih-address { color: var(--night-muted); font-size: 13px !important; letter-spacing: .04em; text-transform: uppercase; }
+.ih-brands .eyebrow { color: var(--night-muted); margin-bottom: 12px; }
+.ih-brands ul { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0; padding: 0; list-style: none; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+.ih-brands li + li::before { content: "—"; margin-right: 22px; color: var(--night-muted); }
+/* команда (временные примеры): ч/б карточки с инициалами */
+.ih-about-night .arch-team-heading, .ih-about-night .arch-team-grid { grid-column: 1 / -1; }
+.ih-about-night .arch-team-heading { border-top: 1px solid var(--night-line); margin-top: clamp(64px, 7vw, 104px); }
+.ih-about-night .arch-team-heading h3 { font-weight: 300; text-transform: uppercase; letter-spacing: .04em; }
+.ih-about-night .arch-team-heading p, .ih-about-night .arch-team-card > p { color: var(--night-muted); }
+.ih-about-night .arch-team-placeholder { background: var(--black); border: 1px solid var(--night-line); color: var(--white); }
+.ih-about-night .arch-team-placeholder > span { font-weight: 200; color: var(--white); }
+.ih-about-night .arch-team-placeholder small { color: var(--night-muted); text-transform: uppercase; }
+.ih-about-night .arch-team-card h4 { font-weight: 300; color: var(--white); }
+
+/* ── Блог ─────────────────────────────────────────────────── */
+.ih-home .arch-blog { --bg: var(--black); --ink: var(--white); --muted: var(--night-muted); background: var(--black); color: var(--white); }
+.ih-home .arch-blog .eyebrow, .ih-home .arch-blog .arch-section-heading > p { color: var(--night-muted); }
+.ih-home .arch-blog-filters button { border: 1px solid var(--night-line); color: var(--white); background: none; text-transform: uppercase; font-size: 11px; font-weight: 400; letter-spacing: .06em; }
+.ih-home .arch-blog-filters button:hover { border-color: var(--white); }
+.ih-home .arch-blog-filters button[aria-pressed=true] { background: var(--white); color: var(--black); border-color: var(--white); }
+.ih-home .arch-blog-image { border-color: var(--night-line); }
+.ih-home .arch-blog-image > span { background: var(--black); color: var(--white); text-transform: uppercase; letter-spacing: .06em; }
+.ih-home .arch-blog-card h3 { font-weight: 300; }
+.ih-home .arch-blog-card p { color: var(--night-muted); }
+.ih-home .arch-read { color: var(--white); text-transform: uppercase; letter-spacing: .06em; font-size: 10px; }
+
+/* ── Тёмный низ: подвал и карта в оттенках серого ─────────── */
+.ih-home footer#showroom {
+  --bg: var(--black); --surface: var(--black); --ink: var(--white); --muted: var(--night-muted); --line: var(--night-line);
+  background: var(--black); color: var(--white); border-top: 1px solid var(--night-line);
+}
+.ih-home footer#showroom a { color: inherit; }
+.ih-home footer#showroom .contact-invitation { border-bottom-color: var(--night-line); }
+.ih-home footer#showroom .contact-invitation h2 { font-size: clamp(28px, 2.8vw, 40px); line-height: 1.2; }
+.ih-home footer#showroom .contact-copy h2 span { color: var(--night-muted); }
+.ih-home footer#showroom .phone { font-weight: 200 !important; letter-spacing: .02em; }
+.ih-home footer#showroom .location-copy h3 { font-weight: 300; text-transform: uppercase; letter-spacing: .04em; }
+.ih-home footer#showroom .location-copy address { color: var(--night-muted); }
+.ih-home footer#showroom .footer-brand > img { filter: brightness(0) invert(1); }
+.ih-home footer#showroom .footer-brand > p, .ih-home footer#showroom .map-attribution { color: var(--night-muted); }
+.ih-home footer#showroom .footer-directory nav a { font-weight: 300; }
+.ih-home .map-preview { background: var(--black); border: 1px solid var(--night-line); }
+.ih-home .map-preview::after { content: none; display: none; }
+.ih-home .map-tiles { filter: grayscale(1) contrast(1.05) brightness(.95); opacity: 1; }
+.ih-home .map-pin { background: var(--black); border: 2px solid var(--white); box-shadow: 0 0 0 9px rgba(10, 10, 10, .35); }
+.ih-home .map-pin-label { background: var(--white); color: var(--black); border-color: var(--black); }
+.ih-home footer#showroom .footer-bottom { gap: 16px; flex-wrap: wrap; }
+.ih-home footer#showroom #motion-toggle {
+  min-height: 44px; padding: 8px 14px; border: 1px solid var(--night-line);
+  background: none; color: var(--night-muted); font: inherit; font-size: 11px; cursor: pointer;
+}
+.ih-home footer#showroom #motion-toggle:hover { color: var(--white); border-color: var(--white); }
+
+/* ── Планшет и телефон ────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .ic-link { flex-basis: calc(50% - clamp(16px, 2vw, 32px)); }
+  .ih-home .arch-header .page-nav a + a::before { margin: 0 8px; }
+  /* кнопка меню по ширине текста, а не во всю колонку шапки */
+  .ih-home .arch-header .menu-toggle { justify-self: start; width: auto; padding: 8px 16px; }
+}
+@media (max-width: 860px) {
+  /* карточки в колонку на всю ширину, выноски скрыты; фото — целиком 4:3, без обрезки */
+  .ic-stage { aspect-ratio: auto; container-type: normal; display: grid; gap: 48px; }
+  .ic-lines { display: none; }
+  .ic-card { position: relative; display: grid; gap: 16px; }
+  .ic-media, .ic-label { position: static; width: auto !important; }
+  .ic-media { aspect-ratio: 4 / 3; }
+  /* заголовок в 2 строки без переносов слов: поля 8px; от 375px — 34px, на более узких — по ширине (не меньше 28px) */
+  .ic-heading { margin-inline: calc(8px - var(--gutter)); font-size: clamp(28px, 9.4vw, 34px); }
+  .ic-label, .ic-card.is-stacked .ic-label { flex-direction: row; gap: 14px; }
+  .ic-num { font-size: clamp(24px, 6.45vw, 33px); }
+  .ic-text, .ic-card.is-stacked .ic-text { padding-top: 6px; gap: 6px; }
+  .ic-title { font-size: clamp(16px, 4.3vw, 22px); }
+  .ic-text small { font-size: 12px; }
+  .ih-about-day { grid-template-columns: 1fr; gap: 24px; padding-bottom: 120px !important; }
+  .ih-home .ih-about-night { grid-template-columns: 1fr; gap: 36px; }
+  .ih-about-photo { margin-top: -84px; }
+  .ih-about-copy > p, .ih-about-lead { font-size: 14px; }
+}
+@media (max-width: 760px) {
+  /* светлый ролик: текст во всю ширину сверху — вуаль сверху вниз */
+  .ih-home .ih-hero.is-light .hero-shield {
+    background: linear-gradient(to bottom, transparent calc(100% - 120px), #EFE7DF 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, .82) 0%, rgba(255, 255, 255, .55) 38%, rgba(255, 255, 255, 0) 62%);
+  }
+  /* на телефоне кнопка консультации — круг 52 px справа внизу */
+  .ih-home .hero-bottom { right: calc(var(--gutter) + 64px); }
+  .ih-home .arch-header .menu-toggle { font-size: 8px; letter-spacing: .02em; white-space: nowrap; padding: 0; }
+}
+@media (max-width: 560px) {
+  .ic-links { gap: 20px; }
+  .ic-link { flex-basis: 100%; min-width: 0; }
+  .ih-home .ih-hero h1 { font-size: clamp(32px, 9.6vw, 56px); }
+  .ih-about-photo img { aspect-ratio: 4 / 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ic-media img { transition: none; }
+  .ic-card:hover .ic-media img { transform: none; }
+}
+
+/* ── Блог: три статьи со своими страницами (28.10) ───────── */
+.ih-home .ih-blog-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ih-home .ih-blog-link { display: block; color: inherit; text-decoration: none; }
+.ih-home .ih-blog-link:hover img { transform: scale(1.04); }
+.ih-home .ih-blog-link:hover .arch-read { opacity: .6; }
+.ih-home .arch-header .arch-contact, .ih-home #mobile-menu .arch-mobile-contact { font-weight: 400; letter-spacing: .06em; }
+
+/* ── Подстраницы: статья и «Оплата и доставка» ───────────── */
+.ih-page .ih-page-main { padding-top: var(--header); background: var(--white); color: var(--black); }
+.ih-page .ih-back { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 28px; color: var(--black); text-decoration: none; font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .08em; }
+.ih-page .ih-back:hover { opacity: .6; }
+.ih-page :is(.ih-article-head h1, .ih-delivery h1) {
+  font-size: clamp(34px, 4.6vw, 72px); line-height: 1.08; font-weight: 200 !important; text-transform: uppercase; letter-spacing: .02em; margin: 20px 0 28px; max-width: 1100px;
+}
+.ih-article-lead { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.7; max-width: 760px; color: var(--black); }
+.ih-article { padding: clamp(48px, 6vw, 96px) var(--gutter) 0; }
+.ih-article-head, .ih-article-cover, .ih-article-body { max-width: 1100px; margin-inline: auto; }
+.ih-article-cover { margin-top: clamp(32px, 4vw, 56px); margin-bottom: clamp(40px, 5vw, 72px); }
+.ih-article-cover img, .ih-article-figure img { display: block; width: 100%; height: auto; }
+.ih-article-body { max-width: 760px; }
+.ih-article-body h2 { font-size: clamp(20px, 1.8vw, 26px); line-height: 1.3; font-weight: 300; text-transform: uppercase; letter-spacing: .04em; margin: 48px 0 18px; }
+.ih-article-body p { font-size: 16px; line-height: 1.85; margin: 0 0 16px; }
+.ih-article-figure { margin: 36px 0 40px; }
+.ih-article-figure figcaption { margin-top: 12px; font-size: 12px; line-height: 1.6; color: var(--day-muted); font-weight: 400; }
+.ih-article-source { margin-top: 48px !important; padding-top: 20px; border-top: 1px solid var(--day-line); font-size: 13px !important; color: var(--day-muted); }
+.ih-article-source a { color: var(--black); text-underline-offset: 4px; }
+.ih-more { max-width: 760px; margin: 72px auto 0; padding: 0 var(--gutter) clamp(72px, 8vw, 120px); box-sizing: content-box; }
+.ih-more .eyebrow { margin-bottom: 18px; }
+.ih-more-link { display: grid; gap: 6px; padding: 18px 0; border-top: 1px solid var(--day-line); color: var(--black); text-decoration: none; }
+.ih-more-link span { font-size: 18px; font-weight: 300; text-transform: uppercase; letter-spacing: .04em; }
+.ih-more-link small { font-size: 13px; color: var(--day-muted); font-weight: 400; }
+.ih-more-link:hover span { opacity: .6; }
+.ih-delivery { max-width: 1280px; margin-inline: auto; padding-top: clamp(48px, 6vw, 96px) !important; }
+.ih-delivery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(32px, 5vw, 80px); margin-top: clamp(40px, 5vw, 72px); }
+.ih-delivery-item { padding: 28px 0 36px; border-top: 1px solid var(--day-line); }
+.ih-delivery-num { display: block; font-size: clamp(32px, 3.2vw, 48px); line-height: 1; font-weight: 200; }
+.ih-delivery-item h2 { margin: 18px 0 12px; font-size: clamp(18px, 1.6vw, 22px); font-weight: 300; text-transform: uppercase; letter-spacing: .04em; }
+.ih-delivery-item p { font-size: 15px; line-height: 1.8; max-width: 520px; }
+.ih-delivery-contacts { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--black); }
+.ih-delivery-contacts p { font-size: 15px; line-height: 1.8; }
+.ih-delivery-contacts a { color: var(--black); }
+@media (max-width: 1100px) { .ih-home .ih-blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .ih-home .ih-blog-grid { grid-template-columns: 1fr; }
+  .ih-delivery-grid { grid-template-columns: 1fr; }
+  .ih-article-body p { font-size: 15px; }
+}
+
+/* ── «Материалы»: каталог декоров керамических столешниц (materials.html, 29.10) ── */
+.ih-materials { max-width: 1400px; margin-inline: auto; }
+.ih-materials-index { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 clamp(40px, 5vw, 72px); }
+.ih-materials-index a { padding: 7px 14px; border: 1px solid var(--black); border-radius: 999px; color: var(--black); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; }
+.ih-materials-index a:hover { background: var(--black); color: var(--white); }
+.ih-material { padding: clamp(28px, 3vw, 44px) 0; border-top: 1px solid var(--day-line); scroll-margin-top: 90px; }
+.ih-material h2 { margin: 0 0 20px; font-size: clamp(22px, 2.4vw, 34px); font-weight: 200; text-transform: uppercase; letter-spacing: .02em; }
+.ih-material-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.ih-material-item { margin: 0; }
+.ih-material-item :is(img, video) { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--white); border: 1px solid var(--day-line); }
+.ih-material-item.is-video video { aspect-ratio: auto; max-height: 420px; object-fit: contain; }
+.ih-material-item figcaption { margin-top: 6px; color: var(--day-muted); font-size: 12px; }
+@media (max-width: 560px) { .ih-material-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
